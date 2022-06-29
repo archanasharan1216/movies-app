@@ -21,7 +21,7 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx|png|jpg)$/,
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
             },
@@ -33,7 +33,57 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
-            }
+            },
+            // {
+            //     test: /\.(jpg|png)$/,
+            //     loader: 'file-loader',
+               
+            //     // options: {
+            //     //     outputPath: '/assets/images',
+            //     //     name: '[name].[ext]',
+            //     //     url: true,
+            //     //     publicPath: './assets/images/',
+            //     // }
+            //   },
+            // {
+            //     test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            //     type: 'asset/resource',
+            //   },
+            // {
+            //     test: /\.(jpg|png)$/,
+            //     use: {
+            //       loader: 'url-loader',
+            //     },
+            //   },
+
+            {
+                test: /\.(png|jp(e*)g|svg)$/,  
+                use: [{
+                    loader: 'url-loader',
+                    options: { 
+                        //limit: 8000, // Convert images < 8kb to base64 strings
+                        name: 'assets/images/[hash]-[name].[ext]'
+                    } 
+                }]
+            },
+           
+                // {
+                //     test: /\.(png|jpg|jpeg|gif)$/i,
+                //     type: 'asset/resource',
+                //     generator: {
+                //         filename: '[name][ext]'
+                //     }
+                // },
+
+                // {
+                //     test: /\.(png|j?g|svg|gif)?$/,
+                //     use: 'file-loader?name=./assets/images/[name].[ext]'
+                //    }
+                // {
+                //     test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                //     type: 'asset/resource',
+                //   },
+           
         ]
     },
     plugins: [
@@ -53,7 +103,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
           },
           compress: true,
-          port: 1000,
+          port: 8009,
     }
     
 };
