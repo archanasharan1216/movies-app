@@ -34,27 +34,6 @@ module.exports = {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
             },
-            // {
-            //     test: /\.(jpg|png)$/,
-            //     loader: 'file-loader',
-               
-            //     // options: {
-            //     //     outputPath: '/assets/images',
-            //     //     name: '[name].[ext]',
-            //     //     url: true,
-            //     //     publicPath: './assets/images/',
-            //     // }
-            //   },
-            // {
-            //     test: /\.(png|svg|jpg|jpeg|gif)$/i,
-            //     type: 'asset/resource',
-            //   },
-            // {
-            //     test: /\.(jpg|png)$/,
-            //     use: {
-            //       loader: 'url-loader',
-            //     },
-            //   },
 
             {
                 test: /\.(png|jp(e*)g|svg)$/,  
@@ -65,24 +44,7 @@ module.exports = {
                         name: 'assets/images/[hash]-[name].[ext]'
                     } 
                 }]
-            },
-           
-                // {
-                //     test: /\.(png|jpg|jpeg|gif)$/i,
-                //     type: 'asset/resource',
-                //     generator: {
-                //         filename: '[name][ext]'
-                //     }
-                // },
-
-                // {
-                //     test: /\.(png|j?g|svg|gif)?$/,
-                //     use: 'file-loader?name=./assets/images/[name].[ext]'
-                //    }
-                // {
-                //     test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                //     type: 'asset/resource',
-                //   },
+            }
            
         ]
     },
