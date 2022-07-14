@@ -1,8 +1,7 @@
 import React from 'react';
-import AvailableMovies from './AvailableMovies';
 import styled from 'styled-components';
 import MovieTab from './MovieTab';
-import MoviesSort from './MoviesSort';
+
 
 const MoviesControl = styled.div `
     background-color: #232323;
@@ -16,20 +15,13 @@ const MoviesControl = styled.div `
 type Props = {
     isEverythingOk: boolean;
 }
-const MoviesList:React.FC<{}> = () => {
+const MoviesList:React.FunctionComponent = () => {
     
     return(
         
-            <MoviesControl>
-           
-           <MovieTab />
-          
-      </MoviesControl>
-             
-          
-          
-          
-        
+        <MoviesControl>   
+           <MovieTab />  
+        </MoviesControl>
         
     )
 };

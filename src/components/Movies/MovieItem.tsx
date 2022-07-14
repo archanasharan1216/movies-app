@@ -2,7 +2,7 @@ import React from 'react';
 import Movie from '../../models/movie';
 import Card from '../UI/Card';
 
-const MovieItem: React.FC<{items: Movie[]}> = (props) => {
+const MovieItem: React.FunctionComponent<{items: Movie[]}> = (props) => {
     
     return(
         <React.Fragment>

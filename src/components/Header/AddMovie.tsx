@@ -1,7 +1,8 @@
-import React from 'react';
+import ModalContent from "../UI/ModalContent";
 import styled from 'styled-components';
+import { useState, useEffect } from "react";
 
-const AddButton = styled.button `
+const Button = styled.button `
     background-color: #424242;
     
     color: #f65261;
@@ -9,11 +10,27 @@ const AddButton = styled.button `
     border-radius: 3px;
     `;
 
-const AddMovie:React.FC = () => {
-    return(
-        <AddButton>
+
+const AddMovie: React.FunctionComponent = () => {
+    const[addMovie, setAddMovie] = useState<boolean>(false);
+    const addMovieHandler = () => {
+        setAddMovie(true);
+    }
+    const closeModalHandler = () => {
+        setAddMovie(false);
+    }
+    
+    return( 
+        <>
+        <Button onClick={addMovieHandler}>
             + ADD MOVIE
-        </AddButton>
+       </Button>
+      {addMovie && 
+       <ModalContent modalTitle = 'ADD MOVIE' showModal={addMovie} closeModalHandler={closeModalHandler}/>}
+        
+         
+        </>
+        
     )
 }
 

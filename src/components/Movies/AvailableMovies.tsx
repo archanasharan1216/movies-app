@@ -12,7 +12,7 @@ import img5 from '../../assets/images/reservoirdogs.jpg';
 
 
 const movies = [
-    new Movie('Avengers', 'Action & Adventure', 2004, img1),
+    new Movie('Avengers', 'Action and Adventure', 2004, img1),
     new Movie('Bohemian Rhapsody', 'Drama, Biography, Music', 2003, img2),
     new Movie('Inception', 'Action and Adventure', 2003, img3),
     new Movie('Kill Bill', 'Oscar Winning Movie', 1994, img4),
@@ -23,10 +23,8 @@ const AvailableMovies: React.FC<{}> = () => {
     
     return(
         
-            
             <MovieItem items={movies}/>
     
-        
     );
 };
 

@@ -103,7 +103,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
           },
           compress: true,
-          port: 8009,
+          port: 8004,
     }
     
 };

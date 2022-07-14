@@ -3,12 +3,6 @@ import styled from 'styled-components';
 
 const MoviesSortControl = styled.span `
 float:right;
-//margin-left: 5%;
-// min-width: 20%;
-//     label {
-//         color: white;
-//         margin: 7%;
-//     }
 select {
     background: transparent;
     color: white;
@@ -25,7 +19,7 @@ label {
 `;
 
 
-const MoviesSort:React.FC = () => {
+const MoviesSort:React.FunctionComponent = () => {
     return(
         <MoviesSortControl>
             <label htmlFor="movies">SORT BY</label>

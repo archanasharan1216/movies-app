@@ -1,11 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import SearchMovie from './SearchMovie';
-import Movies from '../Movies/MoviesList';
 import styled from 'styled-components';
 import AddMovie from './AddMovie';
 import image from '../../assets/images/bgrnd-img.png';
-
 
 const HeaderControl = styled.div`
     padding-top: 5px;
@@ -19,7 +17,8 @@ const HeaderControl = styled.div`
         color: #F65261;
         width: 90%;
         margin: 2%;
-        font-size: large;
+        font-size: x-large;
+        margin-left: 8%;
     }
 
 `;
@@ -43,25 +42,15 @@ const BackgroundFilter = styled.div `
     backdrop-filter: blur(7px);
 `;
 
-const HeaderForm: React.FC<{}> = () => {
+const HeaderForm: React.FunctionComponent = () => {
 
-    const[movies, setMovies] = useState<number>(0);
-    const addMovies = () => {
-        setMovies(movies + 1);
-    };
-
-    const removeMovies = () => {
-        setMovies(movies - 1);
-    };
         return (
             <HeaderControl>
                 <BackgroundFilter>
                     <HeaderTop>
                     <p><strong>netflix</strong>roulette</p>
-                        {/* <img src='./bgrnd-img.jpg' /> */}
                         <AddMovie />
-                    </HeaderTop>
-                    
+                    </HeaderTop>                  
                     <SearchMovie />
                 </BackgroundFilter>
                 

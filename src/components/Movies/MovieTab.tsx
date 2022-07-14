@@ -45,7 +45,7 @@ const PanelControl = styled(TabPanel) `
 `;
 
 
-const MovieTab:React.FC = () => {
+const MovieTab:React.FunctionComponent = () => {
     return(
       <TabControl> 
           <TabsDiv>

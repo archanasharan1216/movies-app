@@ -15,7 +15,7 @@ const FooterControl = styled.div`
 
 
 `;
-const Footer: React.FC<{}> = () => {
+const Footer: React.FunctionComponent = () => {
     return(
         <FooterControl>
            <strong>netflix</strong>roulette
