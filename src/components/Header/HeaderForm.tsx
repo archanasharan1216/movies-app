@@ -1,5 +1,3 @@
-import React from 'react';
-import { useState } from 'react';
 import SearchMovie from './SearchMovie';
 import styled from 'styled-components';
 import AddMovie from './AddMovie';

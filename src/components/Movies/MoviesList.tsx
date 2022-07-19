@@ -16,7 +16,7 @@ type Props = {
     isEverythingOk: boolean;
 }
 const MoviesList:React.FunctionComponent = () => {
-    
+    console.log('In Movies List');
     return(
         
         <MoviesControl>   

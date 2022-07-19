@@ -6,9 +6,7 @@ import MoviesSort from './MoviesSort';
 
 const TabControl = styled.div `
     color: white;
-    //margin: 5%;
     width: 100%;
-    //margin-left:8%;
 
     TabList {
       border-bottom: none;

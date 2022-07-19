@@ -2,16 +2,13 @@ import styled from 'styled-components';
 import image from '../../assets/images/avengers.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react'; 
+import { useState } from 'react'; 
 import CloseMark from './CloseMark';
 import EditMovie from '../Movies/EditMovie';
 import DeleteMovie from '../Movies/DeleteMovie';
 
 const CardControl = styled.div`
-//background-image: url(${image});
 width: 25%;
-
-//display:flex;
 margin: 3%;
 img {
     width: 100%;
@@ -107,19 +104,6 @@ const Card:React.FunctionComponent<{id:string, title:string, type:string, year:n
     const closeDeleteModal = () => {
         setDeleteMovie(false);
     }
-    
-
-    // const closeModalHandler = () => {
-    //     setEditMovie(false);
-    // }
-    
-    // const closeModalHandler = () => {
-    //     setDeleteMovie(false);
-    // }
-
-    // useEffect(()=>{
-    //     setModifyMovie(false);
-    // },[editMovie==true,deleteMovie==true]);
     
     return(
         <CardControl>

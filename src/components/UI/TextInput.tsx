@@ -1,16 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ComponentPropsWithoutRef } from 'react';
 
 
-   interface propTypes extends ComponentPropsWithoutRef<"input"> {
+   interface InputProps extends ComponentPropsWithoutRef<"input"> {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void; 
     label?: string; 
     labelClass?: string; 
     inputClass?: string;
    }
-   const TextInput: React.FunctionComponent<propTypes> = (props) => {
-    
+   const TextInput: React.FunctionComponent<InputProps> = (props) => {
     return(
 
         <> 

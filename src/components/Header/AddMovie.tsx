@@ -1,13 +1,21 @@
 import ModalContent from "../UI/ModalContent";
 import styled from 'styled-components';
-import { useState, useEffect } from "react";
+import { useState} from "react";
+import Button from "../UI/Button";
 
-const Button = styled.button `
+const ButtonDiv = styled.div `
+    margin: 2%;
+    width: 13%;
+   .buttonClass {
     background-color: #424242;
-    
     color: #f65261;
     border-style: none;
     border-radius: 3px;
+    height: 50px;
+    width: 100%;
+    font-size: large;
+    font-family: system-ui;
+   }
     `;
 
 
@@ -22,13 +30,18 @@ const AddMovie: React.FunctionComponent = () => {
     
     return( 
         <>
-        <Button onClick={addMovieHandler}>
-            + ADD MOVIE
-       </Button>
+       
+       <ButtonDiv>
+            <Button name='+ ADD MOVIE' type='button' buttonClass='buttonClass' onClick={addMovieHandler}>
+            </Button>
+       </ButtonDiv>
+
+      
       {addMovie && 
-       <ModalContent modalTitle = 'ADD MOVIE' showModal={addMovie} closeModalHandler={closeModalHandler}/>}
-        
-         
+       <ModalContent  
+       modalTitle = 'ADD MOVIE' 
+       showModal={addMovie} 
+       closeModalHandler={closeModalHandler}/>}  
         </>
         
     )

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const MoviesSortControl = styled.span `
 float:right;
 select {
-    background: transparent;
+    background: #232323;
     color: white;
     border: none;
     margin-left: 25px;

@@ -40,7 +40,6 @@ module.exports = {
                 use: [{
                     loader: 'url-loader',
                     options: { 
-                        //limit: 8000, // Convert images < 8kb to base64 strings
                         name: 'assets/images/[hash]-[name].[ext]'
                     } 
                 }]
@@ -65,7 +64,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
           },
           compress: true,
-          port: 8004,
+          port: 8005,
     }
     
 };

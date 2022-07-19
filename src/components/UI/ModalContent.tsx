@@ -1,17 +1,8 @@
-import React, {useState} from 'react';
+import {useState, useCallback} from 'react';
 import styled from 'styled-components';
 import Modal from './Modal';
 import TextInput from './TextInput';
-
-
-
-const Button = styled.button `
-    background-color: #424242;
-    
-    color: #f65261;
-    border-style: none;
-    border-radius: 3px;
-    `;
+import Button from './Button';
 
 const FormDiv = styled.div `
     display: flex;
@@ -88,7 +79,12 @@ const FormDiv = styled.div `
         display: flex;
         justify-content: flex-end;
         width: 92%;
-
+        .buttonClass {
+            background-color: #424242;  
+            color: #f65261;
+            border-style: none;
+            border-radius: 3px;
+        }
         Button {
             height: 38px;
             width: 10%;
@@ -141,10 +137,7 @@ const ModalContent:React.FunctionComponent<Props> = (props) => {
     const[movieUrl, setUrl] = useState<string>();
     const[rating, setRating] = useState<string>();
     const[runtime, setRuntime] = useState<string>();
-
-
-   
-   
+    
     const titleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     }
@@ -161,16 +154,10 @@ const ModalContent:React.FunctionComponent<Props> = (props) => {
 
 
     const modalActions = (
-        
-        <>
-       
-        <FormDiv>
-            
+        <FormDiv>       
            <div className='modalTitle'>
                 {props.modalTitle}
            </div>
-
-           
             <div className='rowWrapper'>
                 <div className='textInput firstColumn'>
                     <TextInput
@@ -240,26 +227,17 @@ const ModalContent:React.FunctionComponent<Props> = (props) => {
                 
             </div>
             <div className='submitSection'>
-                <Button className='resetButton'> RESET </Button>
-                <Button className='submitButton'> SUBMIT </Button>
-            
+                <Button buttonClass='resetButton buttonClass' name='RESET' type='button'> </Button>
+                <Button buttonClass='submitButton buttonClass' name='SUBMIT' type='button'> </Button>
             </div>
         </FormDiv>
-       
-        </>
 
     );
 
-    return(
-        <>
-            
-            <Modal onClose={props.closeModalHandler}>
-                {modalActions}
-            </Modal>
-            
-        </>
-       
-        
+    return(   
+        <Modal onClose={props.closeModalHandler}>
+            {modalActions}
+        </Modal>
     )
 }
 

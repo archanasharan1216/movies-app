@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import CloseMark from './CloseMark';
@@ -19,7 +18,6 @@ const ModalControl = styled.div `
     top: 15vh;
     left: 18%;
     width: 60%;
-    //background-color: white;
     padding: 1rem;
     border-radius: 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);

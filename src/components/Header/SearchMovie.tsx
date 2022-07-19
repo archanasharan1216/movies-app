@@ -1,7 +1,9 @@
-import React from 'react';
-import { useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 import TextInput from '../UI/TextInput';
 import styled from 'styled-components';
+import movies from '../Movies/MoviesData';
+import Button from '../UI/Button';
+import React from 'react';
 
 const SearchControl = styled.div `
     display: flex;
@@ -13,7 +15,7 @@ const SearchControl = styled.div `
         display: flex;
     }
 
-    button {
+    .buttonClass {
         height: 3.5rem;
         align-self: flex-end;
         width: 15%;
@@ -53,34 +55,47 @@ const TextInputDiv = styled.div `
         border-radius: 5px;
         font-size: larger;
         padding-left: 20px;
-    } 
-
-
-
-
-    
+    }   
 `;
 
 const SearchMovie: React.FunctionComponent = () =>{
-    const textInputRef = useRef<HTMLInputElement>(null);
-    
+    const [inputValue, setInput] = useState<string>('');
+    const movieNames: Array<string> = [];
+   
+    const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(event.currentTarget.value)
+      }
+
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
-    
-        const enteredText = textInputRef.current!.value;
-    
-        if (enteredText.trim().length === 0) {
-
+        if (inputValue.trim().length === 0) {
           return;
-        }
-    
-        
+        } 
       };
-
-    const[inputValue, setInput] = useState<string>();
-    const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-            setInput(event.target.value);
+      
+    movies.forEach((movie) => {      
+        movieNames.push (movie.title);
     }
+
+   );
+
+    useEffect(() => {
+        const searchValue = setTimeout(() => {
+            
+            if(movieNames.includes(inputValue)) {
+                console.log('Movie Available');
+                return;
+            }
+            else {
+                console.log("Not available");
+            }
+        }, 1000);
+        return () => {
+            clearTimeout(searchValue);
+        }
+    }, [inputValue]    
+    );
+    
    
     return(
         <SearchControl>
@@ -95,7 +110,8 @@ const SearchMovie: React.FunctionComponent = () =>{
                         value={inputValue}/>
                    
                 </TextInputDiv>
-                <button > SEARCH </button>
+                <Button type='submit' buttonClass='buttonClass' name='SEARCH'>         
+                </Button>
                 
             </form>
         </SearchControl>
