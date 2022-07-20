@@ -1,6 +1,6 @@
 import ModalContent from "../UI/ModalContent";
 import styled from 'styled-components';
-import { useState} from "react";
+import { useCallback, useState} from "react";
 import Button from "../UI/Button";
 
 const ButtonDiv = styled.div `
@@ -21,12 +21,12 @@ const ButtonDiv = styled.div `
 
 const AddMovie: React.FunctionComponent = () => {
     const[addMovie, setAddMovie] = useState<boolean>(false);
-    const addMovieHandler = () => {
+    const addMovieHandler = useCallback(() => {
         setAddMovie(true);
-    }
-    const closeModalHandler = () => {
+    },[]);
+    const closeModalHandler = useCallback(() => {
         setAddMovie(false);
-    }
+    },[]);
     
     return( 
         <>

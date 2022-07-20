@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import image from '../../assets/images/avengers.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react'; 
+import { useState, useCallback } from 'react'; 
 import CloseMark from './CloseMark';
 import EditMovie from '../Movies/EditMovie';
 import DeleteMovie from '../Movies/DeleteMovie';
+import React from 'react';
 
 const CardControl = styled.div`
 width: 25%;
@@ -86,24 +86,25 @@ const Card:React.FunctionComponent<{id:string, title:string, type:string, year:n
     const[modifyMovie, setModifyMovie] = useState<boolean>(false);
     const[editMovie, setEditMovie] = useState<boolean>(false);
     const[deleteMovie, setDeleteMovie] = useState<boolean>(false);
-    const modifyMovieHandler = () => {
+    
+    const modifyMovieHandler = useCallback(() => {
         setModifyMovie(true);
-    }
-    const closeModifyModal = () => {
+    }, []) ;
+    const closeModifyModal = useCallback( () => {
         setModifyMovie(false);
-    }
-    const editMovieHandler = () => {
+    },[]);
+    const editMovieHandler = useCallback(() => {
         setEditMovie(true);
-    }
-    const closeEditModal = () => {
+    },[]);
+    const closeEditModal = useCallback(() => {
         setEditMovie(false);
-    }
-    const deleteMovieHandler = () => {
+    },[]);
+    const deleteMovieHandler = useCallback(() => {
         setDeleteMovie(true);
-    }
-    const closeDeleteModal = () => {
+    },[]);
+    const closeDeleteModal = useCallback(() => {
         setDeleteMovie(false);
-    }
+    },[]);
     
     return(
         <CardControl>

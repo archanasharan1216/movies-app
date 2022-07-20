@@ -138,18 +138,18 @@ const ModalContent:React.FunctionComponent<Props> = (props) => {
     const[rating, setRating] = useState<string>();
     const[runtime, setRuntime] = useState<string>();
     
-    const titleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const titleHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
-    }
-    const urlHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    },[]);
+    const urlHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setUrl(event.target.value);
-    }
-    const ratingHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    },[]);
+    const ratingHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setRating(event.target.value);
-    }
-    const runtimeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    },[]);
+    const runtimeHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setRuntime(event.target.value);
-    }
+    },[]);
 
 
 

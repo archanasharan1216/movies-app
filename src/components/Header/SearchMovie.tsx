@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import TextInput from '../UI/TextInput';
 import styled from 'styled-components';
 import movies from '../Movies/MoviesData';
@@ -62,16 +62,16 @@ const SearchMovie: React.FunctionComponent = () =>{
     const [inputValue, setInput] = useState<string>('');
     const movieNames: Array<string> = [];
    
-    const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setInput(event.currentTarget.value)
-      }
+      },[]);
 
-    const submitHandler = (event: React.FormEvent) => {
+    const submitHandler = useCallback((event: React.FormEvent) => {
         event.preventDefault();
         if (inputValue.trim().length === 0) {
           return;
         } 
-      };
+      },[]);
       
     movies.forEach((movie) => {      
         movieNames.push (movie.title);
