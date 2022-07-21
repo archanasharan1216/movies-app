@@ -1,10 +1,8 @@
 import React from 'react';
-import './App.css';
 import HeaderForm from './components/Header/HeaderForm';
 import MoviesList from './components/Movies/MoviesList';
 import Footer from './components/Footer/Footer';
 import styled from 'styled-components';
-import AvailableMovies from './components/Movies/AvailableMovies';
 import {ErrorBoundary} from 'react-error-boundary'
 
 
@@ -24,7 +22,7 @@ const ErrorFallBack:React.FC<Props> = (props) => {
       )
 }
 
-const App: React.FC<{}> = () => {
+const App: React.FunctionComponent = () => {
     return (
         <AppControl>
             <HeaderForm />
