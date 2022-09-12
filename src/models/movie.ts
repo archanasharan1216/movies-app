@@ -6,7 +6,7 @@ class Movie {
     image: string;
 
     constructor(movieTitle: string, movieType: string, movieYear: number, movieImage: string) {
-        this.id = new Date().toISOString();
+        this.id = `${Math.floor(Math.random() * 100)}`;
         this.title = movieTitle;
         this.type = movieType;
         this.year = movieYear;

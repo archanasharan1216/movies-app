@@ -1,31 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const MoviesSortControl = styled.span `
-float:right;
-select {
-    background: #232323;
-    color: white;
-    border: none;
-    margin-left: 25px;
-    font-weight: bold;
-    font-family: system-ui;
+import { MoviesSortControl } from './Movies.styles';
+interface IMovieSort {
+    handleSort: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    sortOptions: string[];
 }
 
-label {
-    font-family: system-ui;
-}
-    
-`;
-
-
-const MoviesSort:React.FunctionComponent = () => {
+const MoviesSort:React.FC<IMovieSort> = ({handleSort, sortOptions}) => {
     return(
         <MoviesSortControl>
             <label htmlFor="movies">SORT BY</label>
-            <select name="movies" id="movies">
-            <option value="Release Date">RELEASE DATE</option>
-            <option value="A-Z">A-Z</option>
+            <select 
+                id="movies"
+                onChange={(e) => handleSort(e)}
+            >
+                {sortOptions.map((option) => (
+                    <option key={option} value={option}>{option.toUpperCase()}</option>
+                ))}
             </select>
         </MoviesSortControl>
     )

@@ -1,10 +1,8 @@
 import HeaderForm from './components/Header/HeaderForm';
-import MoviesList from './components/Movies/MoviesList';
+import Movies from './components/Movies';
 import Footer from './components/Footer/Footer';
 import styled from 'styled-components';
 import {ErrorBoundary} from 'react-error-boundary'
-
-
 
 const AppControl = styled.div `
     height: 100vh;
@@ -27,8 +25,9 @@ const App: React.FunctionComponent = () => {
         <AppControl>
             <HeaderForm />
             <ErrorBoundary FallbackComponent= {ErrorFallBack}>
-                <MoviesList/>
-            </ErrorBoundary>    
+                <Movies />
+            </ErrorBoundary>
+            
             <Footer />
         </AppControl>
     );
