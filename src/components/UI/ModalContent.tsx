@@ -206,7 +206,6 @@ const ModalContent: React.FunctionComponent<IModalContent> = (props) => {
         rating,
         runtime,
       };
-      console.log(formValue);
     },
     [title, movieUrl, rating, runtime]
   );
@@ -293,7 +292,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = (props) => {
         <GenreControl className="textInput firstColumn">
           <label htmlFor="genre"> GENRE </label>
           <select name="genre" id="genre">
-            <option value="" disabled selected>
+            <option value="" disabled>
               Select Genre
             </option>
             <option value="Action and Adventure">Action and Adventure</option>

@@ -27,7 +27,6 @@ const App: React.FunctionComponent = () => {
       <ErrorBoundary FallbackComponent={ErrorFallBack}>
         <Movies />
       </ErrorBoundary>
-
       <Footer />
     </AppControl>
   );
