@@ -69,38 +69,38 @@ const BackdropWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.75);
 `;
 
-interface BackdropProps {
+interface IBackdropProps {
   onClose?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-interface Props extends BackdropProps {
+interface IModalProps extends IBackdropProps {
   children: JSX.Element;
 }
 
-const Backdrop: React.FunctionComponent<BackdropProps> = (props) => {
-  return <BackdropWrapper onClick={props.onClose}></BackdropWrapper>;
+const Backdrop: React.FunctionComponent<IBackdropProps> = ({onClose}) => {
+  return <BackdropWrapper onClick={onClose}></BackdropWrapper>;
 };
 
-const ModalOverlay: React.FC<Props> = (props) => {
+const ModalOverlay: React.FC<IModalProps> = ({onClose, children}) => {
   return (
     <ModalWrapper>
-      <CloseMark />
-      <div>{props.children}</div>
+      <CloseMark onClose={onClose}/>
+      <div>{children}</div>
     </ModalWrapper>
   );
 };
 
 const portalElement = document.getElementById("overlays") as HTMLElement;
 
-const Modal: React.FunctionComponent<Props> = (props) => {
+const Modal: React.FunctionComponent<IModalProps> = ({onClose, children}) => {
   return (
     <ModalControl>
       {ReactDOM.createPortal(
-        <Backdrop onClose={props.onClose} />,
+        <Backdrop onClose={onClose} />,
         portalElement
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay>{props.children}</ModalOverlay>,
+        <ModalOverlay onClose={onClose}>{children}</ModalOverlay>,
         portalElement
       )}
     </ModalControl>

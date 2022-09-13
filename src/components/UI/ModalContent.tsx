@@ -293,7 +293,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({modalTitle, close
       <div className="rowWrapper">
         <GenreControl className="textInput firstColumn">
           <label htmlFor="genre"> GENRE </label>
-          <select name="genre" id="genre">
+          <select name="genre" id="genre" defaultValue="">
             <option value="" disabled>
               Select Genre
             </option>
