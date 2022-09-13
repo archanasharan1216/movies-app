@@ -145,7 +145,7 @@ const isDate = (date: string | number | Date): boolean =>
   new Date(date).toString() !== "Invalid Date" &&
   !isNaN(Number(new Date(date)));
 
-const ModalContent: React.FunctionComponent<IModalContent> = (props) => {
+const ModalContent: React.FunctionComponent<IModalContent> = ({modalTitle, closeModalHandler}) => {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
   const [movieUrl, setUrl] = useState<string>("");
@@ -206,6 +206,8 @@ const ModalContent: React.FunctionComponent<IModalContent> = (props) => {
         rating,
         runtime,
       };
+      console.log("Form Value", formValue);
+      closeModalHandler();
     },
     [title, movieUrl, rating, runtime]
   );
@@ -223,7 +225,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = (props) => {
 
   const modalActions = (
     <Form onSubmit={handleSubmit} onReset={handleFormReset}>
-      <div className="modalTitle">{props.modalTitle}</div>
+      <div className="modalTitle">{modalTitle}</div>
       <div className="rowWrapper">
         <div className="textInput firstColumn">
           <TextInput
@@ -352,7 +354,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = (props) => {
     </Form>
   );
 
-  return <Modal onClose={props.closeModalHandler}>{modalActions}</Modal>;
+  return <Modal onClose={closeModalHandler}>{modalActions}</Modal>;
 };
 
 export default ModalContent;
