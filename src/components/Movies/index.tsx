@@ -48,7 +48,7 @@ const MoviesDisplay: React.FC = () => {
           </TabList>
 
           {tabs.map((tab) => (
-            <PanelControl>
+            <PanelControl key={tab}>
               <MoviesList
                 items={selectedMovies(tab)}
                 sortingFunction={sortingFunction}

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import TextInput from "../UI/TextInput";
 import Button from "../UI/Button";
 import { movies } from "../Movies/Movies.data";

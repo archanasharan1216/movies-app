@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
 
 const CloseButton = styled.div`
   float: right;
@@ -11,12 +10,12 @@ const CloseButton = styled.div`
     height: 2em;
   }
 `;
-type Props = {
+interface ICloseIconProps {
   onClose?: React.MouseEventHandler<HTMLDivElement>;
 };
-const CloseMark: React.FunctionComponent<Props> = (props) => {
+const CloseMark: React.FunctionComponent<ICloseIconProps> = ({onClose}) => {
   return (
-    <CloseButton onClick={props.onClose}>
+    <CloseButton onClick={onClose}>
       <FontAwesomeIcon icon={faXmark} />
     </CloseButton>
   );
