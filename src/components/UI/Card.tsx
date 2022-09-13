@@ -1,11 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { useState, useCallback } from "react";
 import CloseMark from "./CloseMark";
 import EditMovie from "../Movies/EditMovie";
 import DeleteMovie from "../Movies/DeleteMovie";
-import React from "react";
 
 const CardControl = styled.div`
   width: 25%;
@@ -85,58 +84,57 @@ const Card: React.FunctionComponent<{
   type: string;
   year: number;
   image: string;
-}> = (props) => {
+}> = ({ title, type, year, image }) => {
   const [modifyMovie, setModifyMovie] = useState<boolean>(false);
   const [editMovie, setEditMovie] = useState<boolean>(false);
   const [deleteMovie, setDeleteMovie] = useState<boolean>(false);
 
-  const modifyMovieHandler = useCallback(() => {
-    setModifyMovie(true);
-  }, []);
-  const closeModifyModal = useCallback(() => {
-    setModifyMovie(false);
-  }, []);
-  const editMovieHandler = useCallback(() => {
-    setEditMovie(true);
-  }, []);
-  const closeEditModal = useCallback(() => {
-    setEditMovie(false);
-  }, []);
-  const deleteMovieHandler = useCallback(() => {
-    setDeleteMovie(true);
-  }, []);
-  const closeDeleteModal = useCallback(() => {
-    setDeleteMovie(false);
-  }, []);
+  const modalHandler = (
+    modalState: boolean,
+    setFunction: React.Dispatch<React.SetStateAction<typeof modalState>>
+  ) => {
+    setFunction(modalState);
+  };
 
   return (
     <CardControl>
       <div className="movieImage">
-        <img src={props.image} />
+        <img src={image} />
         <FontAwesomeIcon
           icon={faEllipsisVertical}
           className="kebabMenu"
-          onClick={modifyMovieHandler}
+          onClick={() => modalHandler(true, setModifyMovie)}
         />
         {modifyMovie && (
           <div className="modifyModal">
-            <span className="closeButton" onClick={closeModifyModal}>
+            <span
+              className="closeButton"
+              onClick={() => modalHandler(false, setModifyMovie)}
+            >
               <CloseMark />
             </span>
-            <span className="spaceAbove" onClick={editMovieHandler}>
+            <span
+              className="spaceAbove"
+              onClick={() => modalHandler(true, setEditMovie)}
+            >
               Edit
             </span>
             {editMovie && (
               <EditMovie
                 editMovie={editMovie}
-                closeModalHandler={closeEditModal}
+                closeModalHandler={() => modalHandler(false, setEditMovie)}
               />
             )}
-            <span className="spaceAbove" onClick={deleteMovieHandler}>
+            <span
+              className="spaceAbove"
+              onClick={() => modalHandler(true, setDeleteMovie)}
+            >
               Delete
             </span>
             {deleteMovie && (
-              <DeleteMovie closeModalHandler={closeDeleteModal} />
+              <DeleteMovie
+                closeModalHandler={() => modalHandler(false, setDeleteMovie)}
+              />
             )}
           </div>
         )}
@@ -144,10 +142,10 @@ const Card: React.FunctionComponent<{
 
       <div className="movieDetails">
         <div className="movieType">
-          <span className="movieTitle">{props.title}</span>
-          <span className="movieGenre">{props.type}</span>
+          <span className="movieTitle">{title}</span>
+          <span className="movieGenre">{type}</span>
         </div>
-        <span className="movieYear">{props.year}</span>
+        <span className="movieYear">{year}</span>
       </div>
     </CardControl>
   );
