@@ -1,35 +1,37 @@
-import { useCallback, useState} from "react";
+import { useCallback, useState } from "react";
 import ModalContent from "../UI/ModalContent";
 import Button from "../UI/Button";
-import { ButtonDiv } from './AddMovie.styles';
-
+import { ButtonDiv } from "./AddMovie.styles";
 
 const AddMovie: React.FunctionComponent = () => {
-    const[addMovie, setAddMovie] = useState<boolean>(false);
-    const addMovieHandler = useCallback(() => {
-        setAddMovie(true);
-    },[]);
-    const closeModalHandler = useCallback(() => {
-        setAddMovie(false);
-    },[]);
-    
-    return( 
-        <>
-       
-       <ButtonDiv>
-            <Button name='+ ADD MOVIE' type='button' buttonClass='buttonClass' onClick={addMovieHandler}>
-            </Button>
-       </ButtonDiv>
+  const [addMovie, setAddMovie] = useState<boolean>(false);
+  const addMovieHandler = useCallback(() => {
+    setAddMovie(true);
+  }, []);
+  const closeModalHandler = useCallback(() => {
+    setAddMovie(false);
+  }, []);
 
-      
-      {addMovie && 
-       <ModalContent  
-       modalTitle = 'ADD MOVIE' 
-       showModal={addMovie} 
-       closeModalHandler={closeModalHandler}/>}  
-        </>
-        
-    )
-}
+  return (
+    <>
+      <ButtonDiv>
+        <Button
+          name="+ ADD MOVIE"
+          type="button"
+          buttonClass="buttonClass"
+          onClick={addMovieHandler}
+        ></Button>
+      </ButtonDiv>
+
+      {addMovie && (
+        <ModalContent
+          modalTitle="ADD MOVIE"
+          showModal={addMovie}
+          closeModalHandler={closeModalHandler}
+        />
+      )}
+    </>
+  );
+};
 
 export default AddMovie;

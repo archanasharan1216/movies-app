@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import styled from 'styled-components';
-import CloseMark from './CloseMark';
+import React from "react";
+import ReactDOM from "react-dom";
+import styled from "styled-components";
+import CloseMark from "./CloseMark";
 
-const ModalControl = styled.div `
-.backdrop {
+const ModalControl = styled.div`
+  .backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +13,7 @@ const ModalControl = styled.div `
     z-index: 20;
     background-color: rgba(0, 0, 0, 0.75);
   }
-  
+
   .modal {
     position: fixed;
     top: 15vh;
@@ -24,16 +24,15 @@ const ModalControl = styled.div `
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     z-index: 30;
     animation: slide-down 300ms ease-out forwards;
-    
   }
-  
+
   @media (min-width: 768px) {
     .modal {
       width: 40rem;
       left: calc(50% - 20rem);
     }
   }
-  
+
   @keyframes slide-down {
     from {
       opacity: 0;
@@ -46,7 +45,7 @@ const ModalControl = styled.div `
   }
 `;
 
-const ModalWrapper = styled.div `
+const ModalWrapper = styled.div`
   position: absolute;
   top: 15vh;
   left: 13%;
@@ -60,7 +59,7 @@ const ModalWrapper = styled.div `
   color: red;
 `;
 
-const BackdropWrapper = styled.div `
+const BackdropWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -70,19 +69,16 @@ const BackdropWrapper = styled.div `
   background-color: rgba(0, 0, 0, 0.75);
 `;
 
-
-
-
 interface BackdropProps {
-  onClose? : (React.MouseEventHandler<HTMLDivElement>); 
-};
+  onClose?: React.MouseEventHandler<HTMLDivElement>;
+}
 
 interface Props extends BackdropProps {
   children: JSX.Element;
-};
+}
 
 const Backdrop: React.FunctionComponent<BackdropProps> = (props) => {
-  return <BackdropWrapper onClick={props.onClose}></BackdropWrapper>
+  return <BackdropWrapper onClick={props.onClose}></BackdropWrapper>;
 };
 
 const ModalOverlay: React.FC<Props> = (props) => {
@@ -94,12 +90,15 @@ const ModalOverlay: React.FC<Props> = (props) => {
   );
 };
 
-const portalElement = document.getElementById('overlays') as HTMLElement;
+const portalElement = document.getElementById("overlays") as HTMLElement;
 
 const Modal: React.FunctionComponent<Props> = (props) => {
   return (
     <ModalControl>
-      {ReactDOM.createPortal(<Backdrop onClose={props.onClose}/>, portalElement)} 
+      {ReactDOM.createPortal(
+        <Backdrop onClose={props.onClose} />,
+        portalElement
+      )}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement
