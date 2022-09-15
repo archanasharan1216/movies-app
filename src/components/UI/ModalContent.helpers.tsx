@@ -4,7 +4,7 @@ interface IModalData {
   rating: string;
   runtime: string;
   releaseDate: string;
-  genre: string;
+  genre: string[];
   overview: string;
 }
 

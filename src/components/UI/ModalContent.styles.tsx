@@ -105,7 +105,7 @@ export const Form = styled.form`
 export const GenreControl = styled.div`
   select {
     background: #424242;
-    color: white;
+    color: #ffffff;
     border: none;
     font-family: system-ui;
     height: 3.25rem;
@@ -113,6 +113,69 @@ export const GenreControl = styled.div`
     border-radius: 2px;
     padding-left: 20px;
     width: 100%;
+    font-size: large;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+  }
+
+  .checkBox {
+    height: 15px;
+    width: 15px;
+  }
+  .multiselect {
+    width: 100%;
+  }
+
+  .selectBox {
+    position: relative;
+  }
+
+  .selectBox select {
+    width: 100%;
+  }
+
+  .arrowDown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 95%;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid #f65261;
+    poition: absolute;
+    top: 29px;
+  }
+
+  .arrowUp {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 95%;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid #f65261;
+    poition: absolute;
+    top: 29px;
+  }
+
+  #checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+  }
+
+  #checkboxes label {
+    display: block;
+    color: #ffffff;
   }
 `;
 

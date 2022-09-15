@@ -4,6 +4,7 @@ import TextInput from "./TextInput";
 import Button from "./Button";
 import { Form, GenreControl, InputErrorMessage } from "./ModalContent.styles";
 import { validateForm } from "./ModalContent.helpers";
+import { genresData } from "./ModalContent.data";
 
 interface IModalContent {
   modalTitle: string;
@@ -34,9 +35,9 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
   const [rating, setRating] = useState<string>("");
   const [runtime, setRuntime] = useState<string>("");
   const [releaseDate, setReleaseDate] = useState<string>("");
-  const [genre, setGenre] = useState<string>("");
+  const [genre, setGenre] = useState<string[]>([]);
   const [overview, setOverview] = useState<string>("");
-
+  const [isGenreExpanded, setIsGenreExpanded] = useState<boolean>(false);
   const data = {
     title,
     movieUrl,
@@ -71,10 +72,9 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
   const handleFormReset = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      console.log("form reset", handleFormReset);
       setIsSubmitted(false);
       setTitle("");
-      setGenre("");
+      setGenre([]);
       setRating("");
       setReleaseDate("");
       setRuntime("");
@@ -84,6 +84,28 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
     [title, movieUrl, rating, runtime, genre, overview]
   );
 
+  const showCheckboxes = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!isGenreExpanded && checkboxes) {
+      checkboxes.style.display = "block";
+      setIsGenreExpanded(true);
+    } else if (checkboxes) {
+      checkboxes.style.display = "none";
+      setIsGenreExpanded(false);
+    }
+  };
+
+  const setCheckboxes = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked === true) {
+      setGenre((genre) => [...genre, e.target.id]);
+    } else {
+      setGenre((genre) =>
+        genre.filter((genre) => {
+          return genre !== e.target.id;
+        })
+      );
+    }
+  };
   const modalActions = (
     <Form onSubmit={handleSubmit} onReset={handleFormReset}>
       <div className="modalTitle">{modalTitle}</div>
@@ -154,21 +176,27 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
       <div className="rowWrapper">
         <GenreControl className="textInput firstColumn">
           <label htmlFor="genre"> GENRE </label>
-          <select
-            name="genre"
-            id="genre"
-            defaultValue=""
-            onChange={(e) => inputHandler(e, setGenre)}
-          >
-            <option value="" disabled>
-              Select Genre
-            </option>
-            <option value="Action and Adventure">Action and Adventure</option>
-            <option value="Drama, Biography, Music">
-              Drama, Biography, Music
-            </option>
-            <option value="Oscar Winning Movie">Oscar Winning Movie</option>
-          </select>
+          <div className="multiselect">
+            <div className="selectBox" onClick={showCheckboxes}>
+              <select disabled>
+                <option>Select genre</option>
+              </select>
+              <div className={isGenreExpanded ? "arrowUp" : "arrowDown"}></div>
+            </div>
+            <div id="checkboxes">
+              {genresData.map((item) => (
+                <label key={item} className="labelCheckBox">
+                  <input
+                    type="checkbox"
+                    onChange={setCheckboxes}
+                    className="checkBox"
+                    id={item}
+                  />
+                  {item}
+                </label>
+              ))}
+            </div>
+          </div>
         </GenreControl>
         {validateForm(data).genreHasError[0] && isSubmitted && (
           <InputErrorMessage>
