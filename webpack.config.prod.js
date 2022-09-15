@@ -76,13 +76,7 @@ module.exports = {
               test: /node_modules\/(?!antd\/).*/,
               name: "vendors",
               chunks: "all",
-            },
-            // This can be your own design library.
-            antd: {
-              test: /node_modules\/(antd\/).*/,
-              name: "antd",
-              chunks: "all",
-            },
+            }
           },
         },
         runtimeChunk: {

@@ -177,6 +177,10 @@ export const GenreControl = styled.div`
     display: block;
     color: #ffffff;
   }
+
+  input[type='checkbox'] {
+    accent-color: #f65261;
+}
 `;
 
 export const InputErrorMessage = styled.span`
