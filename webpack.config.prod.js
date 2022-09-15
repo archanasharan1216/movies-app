@@ -8,7 +8,7 @@ module.exports = {
     mode: 'production',
     entry: './src/index.tsx', 
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].[chunkhash].bundle.js',
         path: path.resolve(__dirname, 'build'),
         publicPath: '/build'
         
@@ -59,12 +59,9 @@ module.exports = {
     ],
     performance: {
         hints: "warning",
-        // Calculates sizes of gziped bundles.
         assetFilter: function (assetFilename) {
-          return assetFilename.endsWith(".js.gz");
-        },
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000
+          return assetFilename.endsWith(".tsx.gz");
+        }
       },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -73,7 +70,7 @@ module.exports = {
         splitChunks: {
           cacheGroups: {
             vendors: {
-              test: /node_modules\/(?!antd\/).*/,
+              test: /node_modules\/.*/,
               name: "vendors",
               chunks: "all",
             }
