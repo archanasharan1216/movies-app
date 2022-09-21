@@ -6,11 +6,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.tsx', 
+    entry: path.join(__dirname, 'src', 'index.tsx'), 
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist'
+        path: path.resolve(__dirname, 'dev'),
+        publicPath: '/'
         
     },
     module: {
@@ -18,25 +18,25 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 use: 'ts-loader',
+                include: path.resolve(__dirname, 'dev'),
                 exclude: /node_modules/,
             },
             {
                 test: /\.(js|jsx|png|jpg)$/,
                 exclude: /(node_modules)/,
+                include: path.resolve(__dirname, 'dev'),
                 loader: 'babel-loader',
-            },
-            {
-                test: /\.html$/,
-                loader: "html-loader",
             },
             
             {
                 test: /\.css$/,
+                include: path.resolve(__dirname, 'dev'),
                 use: ["style-loader", "css-loader"]
             },
 
             {
                 test: /\.(png|jp(e*)g|svg)$/,  
+                include: path.resolve(__dirname, 'dev'),
                 use: [{
                     loader: 'url-loader',
                     options: { 
@@ -64,7 +64,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
           },
           compress: true,
-          port: 8009,
+          port: 8007,
     }
     
 };

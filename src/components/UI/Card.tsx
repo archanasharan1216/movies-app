@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
@@ -96,58 +96,66 @@ const Card: React.FunctionComponent<{
     setFunction(modalState);
   };
 
-  return (
-    <CardControl>
-      <div className="movieImage">
-        <img src={image} />
-        <FontAwesomeIcon
-          icon={faEllipsisVertical}
-          className="kebabMenu"
-          onClick={() => modalHandler(true, setModifyMovie)}
-        />
-        {modifyMovie && (
-          <div className="modifyModal">
-            <span
-              className="closeButton"
-              onClick={() => modalHandler(false, setModifyMovie)}
-            >
-              <CloseMark />
-            </span>
-            <span
-              className="spaceAbove"
-              onClick={() => modalHandler(true, setEditMovie)}
-            >
-              Edit
-            </span>
-            {editMovie && (
-              <EditMovie
-                editMovie={editMovie}
-                closeModalHandler={() => modalHandler(false, setEditMovie)}
-              />
-            )}
-            <span
-              className="spaceAbove"
-              onClick={() => modalHandler(true, setDeleteMovie)}
-            >
-              Delete
-            </span>
-            {deleteMovie && (
-              <DeleteMovie
-                closeModalHandler={() => modalHandler(false, setDeleteMovie)}
-              />
-            )}
-          </div>
-        )}
-      </div>
+  useEffect(()=>{
+    if(editMovie || deleteMovie) {
+      setModifyMovie(false);
+    }
+  },[editMovie, deleteMovie]);
 
-      <div className="movieDetails">
-        <div className="movieType">
-          <span className="movieTitle">{title}</span>
-          <span className="movieGenre">{type}</span>
+  return (
+    <>
+      <CardControl>
+        <div className="movieImage">
+          <img src={image} />
+          <FontAwesomeIcon
+            icon={faEllipsisVertical}
+            className="kebabMenu"
+            onClick={() => modalHandler(true, setModifyMovie)}
+          />
+          {modifyMovie && (
+            <div className="modifyModal">
+              <span
+                className="closeButton"
+                onClick={() => modalHandler(false, setModifyMovie)}
+              >
+                <CloseMark />
+              </span>
+              <span
+                className="spaceAbove"
+                onClick={() => modalHandler(true, setEditMovie)}
+              >
+                Edit
+              </span>
+              <span
+                className="spaceAbove"
+                onClick={() => modalHandler(true, setDeleteMovie)}
+              >
+                Delete
+              </span>
+            </div>
+          )}
         </div>
-        <span className="movieYear">{year}</span>
-      </div>
-    </CardControl>
+
+        <div className="movieDetails">
+          <div className="movieType">
+            <span className="movieTitle">{title}</span>
+            <span className="movieGenre">{type}</span>
+          </div>
+          <span className="movieYear">{year}</span>
+        </div>
+      </CardControl>
+      {editMovie && (
+        <EditMovie
+          editMovie={editMovie}
+          closeModalHandler={() => modalHandler(false, setEditMovie)}
+        />
+      )}
+      {deleteMovie && (
+        <DeleteMovie
+          closeModalHandler={() => modalHandler(false, setDeleteMovie)}
+        />
+      )}
+    </>
   );
 };
 

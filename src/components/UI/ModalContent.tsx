@@ -56,13 +56,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
       if (validateForm(data).hasError) {
         return;
       } else {
-        const formValue = {
-          title,
-          movieUrl,
-          rating,
-          runtime,
-        };
-        console.log("form value", formValue);
+        console.log("form value", data);
         closeModalHandler();
       }
     },
