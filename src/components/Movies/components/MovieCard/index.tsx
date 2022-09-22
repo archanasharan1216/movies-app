@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import CloseMark from "./CloseMark";
-import EditMovie from "../Movies/EditMovie";
-import DeleteMovie from "../Movies/DeleteMovie";
-import MovieContext from "../../store/movie-context";
-import { CardControl } from "./Card.styles";
+import CloseMark from "../../../UI/CloseMark";
+import EditMovie from "../EditMovie";
+import DeleteMovie from "../DeleteMovie";
+import MovieContext from "../../../../store/movie-context";
+import { CardControl } from "./MovieCard.styles";
 
 interface ICard {
   id: string;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Modal from "../UI/Modal";
+import Modal from "../../UI/Modal";
 
 const Button = styled.button`
   border-style: none;

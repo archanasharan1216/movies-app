@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import SearchMovie from "./SearchMovie";
-import AddMovie from "./AddMovie";
+import SearchMovie from "./components/SearchMovie";
+import AddMovie from "./components/AddMovie";
 import MovieContext from "../../store/movie-context";
-import MovieDetails from "./MovieDetails";
+import MovieDetails from "./components/MovieDetails";
 import {
   SearchHeader,
   MovieHeader,

@@ -1,4 +1,4 @@
-import HeaderForm from "./components/Header/HeaderForm";
+import HeaderForm from "./components/Header";
 import Movies from "./components/Movies";
 import Footer from "./components/Footer/Footer";
 import styled from "styled-components";

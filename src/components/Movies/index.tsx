@@ -7,8 +7,8 @@ import {
   TabsDiv,
 } from "./Movies.styles";
 import Movie from "../../models/movie";
-import MoviesSort from "./MoviesSort";
-import MoviesList from "./MoviesList";
+import MoviesSort from "./components/MoviesSort";
+import MoviesList from "./components/MoviesList";
 import { capitalize, sortByDateAsc, sortByTitleAsc } from "./Movies.helpers";
 import { sortOptions, tabs } from "./Movies.data";
 import { movies } from "./Movies.data";

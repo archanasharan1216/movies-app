@@ -1,7 +1,7 @@
 import React from "react";
-import Movie from "../../models/movie";
-import Card from "../UI/Card";
-import { sortByDateAsc } from "./Movies.helpers";
+import Movie from "../../../models/movie";
+import Card from "./MovieCard";
+import { sortByDateAsc } from "../Movies.helpers";
 
 interface IMoviesList {
   items: Movie[];

@@ -1,4 +1,4 @@
-import ModalContent from "../UI/ModalContent";
+import ModalContent from "../../UI/ModalContent";
 
 interface IEditMovie {
   editMovie: boolean;

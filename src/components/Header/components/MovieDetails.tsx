@@ -1,7 +1,7 @@
-import Card from "../UI/Card";
+import Card from "../../Movies/components/MovieCard";
 import { useContext } from 'react';
-import MovieContext from "../../store/movie-context";
-import { movies } from "../Movies/Movies.data";
+import MovieContext from "../../../store/movie-context";
+import { movies } from "../../Movies/Movies.data";
 import { HeaderCardWrapper, MovieDetailsWrapper } from "./MovieDetails.styles";
 
 const MovieDetails: React.FunctionComponent = () => {

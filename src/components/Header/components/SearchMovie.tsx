@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
-import TextInput from "../UI/TextInput";
-import Button from "../UI/Button";
-import { movies } from "../Movies/Movies.data";
+import TextInput from "../../UI/TextInput";
+import Button from "../../UI/Button";
+import { movies } from "../../Movies/Movies.data";
 import { SearchControl, TextInputDiv } from "./SearchMovie.styles";
 
 const SearchMovie: React.FunctionComponent = () => {
