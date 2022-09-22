@@ -1,37 +1,30 @@
-import React from 'react';
-import AvailableMovies from './AvailableMovies';
-import styled from 'styled-components';
-import MovieTab from './MovieTab';
-import MoviesSort from './MoviesSort';
+import React from "react";
+import Movie from "../../models/movie";
+import Card from "../UI/Card";
+import { sortByDateAsc } from "./Movies.helpers";
 
-const MoviesControl = styled.div `
-    background-color: #232323;
-    min-height: 25rem;
-    margin: 20px;
-    margin-top: 10px;
-    padding-top: 2px;
-    margin-bottom:0;
-`;
-
-type Props = {
-    isEverythingOk: boolean;
+interface IMoviesList {
+  items: Movie[];
+  sortingFunction: undefined | ((a: Movie, b: Movie) => number);
 }
-const MoviesList:React.FC<{}> = () => {
-    
-    return(
-        
-            <MoviesControl>
-           
-           <MovieTab />
-          
-      </MoviesControl>
-             
-          
-          
-          
-        
-        
-    )
+
+const defaultSort = sortByDateAsc;
+
+const MoviesList: React.FC<IMoviesList> = ({ items, sortingFunction }) => {
+  return (
+    <React.Fragment>
+      {items.sort(sortingFunction ?? defaultSort).map((item) => (
+        <Card
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          type={item.type}
+          year={item.year}
+          image={item?.image}
+        ></Card>
+      ))}
+    </React.Fragment>
+  );
 };
 
 export default MoviesList;

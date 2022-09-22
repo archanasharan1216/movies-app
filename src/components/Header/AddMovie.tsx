@@ -1,20 +1,37 @@
-import React from 'react';
-import styled from 'styled-components';
+import { useCallback, useState } from "react";
+import ModalContent from "../UI/ModalContent";
+import Button from "../UI/Button";
+import { ButtonDiv } from "./AddMovie.styles";
 
-const AddButton = styled.button `
-    background-color: #424242;
-    
-    color: #f65261;
-    border-style: none;
-    border-radius: 3px;
-    `;
+const AddMovie: React.FunctionComponent = () => {
+  const [addMovie, setAddMovie] = useState<boolean>(false);
+  const addMovieHandler = useCallback(() => {
+    setAddMovie(true);
+  }, []);
+  const closeModalHandler = useCallback(() => {
+    setAddMovie(false);
+  }, []);
 
-const AddMovie:React.FC = () => {
-    return(
-        <AddButton>
-            + ADD MOVIE
-        </AddButton>
-    )
-}
+  return (
+    <>
+      <ButtonDiv>
+        <Button
+          name="+ ADD MOVIE"
+          type="button"
+          buttonClass="buttonClass"
+          onClick={addMovieHandler}
+        ></Button>
+      </ButtonDiv>
+
+      {addMovie && (
+        <ModalContent
+          modalTitle="ADD MOVIE"
+          showModal={addMovie}
+          closeModalHandler={closeModalHandler}
+        />
+      )}
+    </>
+  );
+};
 
 export default AddMovie;

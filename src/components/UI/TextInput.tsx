@@ -1,44 +1,38 @@
-import React from 'react';
-//import classes from './TextInput.module.css';
-import styled from 'styled-components';
+import { ComponentPropsWithoutRef } from "react";
 
-const InputControl = styled.div `
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    width: 90%;
-    margin-right: 2%;
-    label {
-        text-align: left;
-        font-size: xx-large;
-        font-family: system-ui;
-        color: white;
-    }
-    input {
-        width: 98%;
-        height: 3.25rem;
-        margin-top: 30px;
-        background-color: #424242;
-        border-color: black;
-        border-radius: 5px;
-        font-size: larger;
-        padding-left: 20px;
-    } 
-    
-`;
-
-
-type props = {placeholder: string, label: string}
-const TextInput  = React.forwardRef<HTMLInputElement, props>((props, ref) => {
-    
-    
-    return(
-        <InputControl>
-            <label htmlFor='text'> {props.label}</label>
-            <input type='text' placeholder={props.placeholder} >       
-            </input>
-        </InputControl>
-    );
-});
+interface IInputProps extends ComponentPropsWithoutRef<"input"> {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
+  labelClass?: string;
+  inputClass?: string;
+}
+const TextInput: React.FunctionComponent<IInputProps> = ({
+  label,
+  id,
+  labelClass,
+  type,
+  onChange,
+  placeholder,
+  inputClass,
+  value,
+}) => {
+  return (
+    <>
+      {label && (
+        <label htmlFor={id} className={labelClass}>
+          {label}
+        </label>
+      )}
+      <input
+        id={id}
+        type={type ?? "text"}
+        onChange={onChange}
+        placeholder={placeholder ?? ""}
+        className={inputClass}
+        value={value}
+      />
+    </>
+  );
+};
 
 export default TextInput;
