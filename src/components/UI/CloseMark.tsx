@@ -5,7 +5,6 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 const CloseButton = styled.div`
   float: right;
   color: white;
-
   svg {
     height: 2em;
   }
