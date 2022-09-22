@@ -20,7 +20,8 @@ const MoviesList: React.FC<IMoviesList> = ({ items, sortingFunction }) => {
           title={item.title}
           type={item.type}
           year={item.year}
-          image={item?.image}
+          image={item.image}
+          showMovieDetails={true}
         ></Card>
       ))}
     </React.Fragment>

@@ -18,25 +18,21 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 use: 'ts-loader',
-                include: path.resolve(__dirname, 'dev'),
                 exclude: /node_modules/,
             },
             {
                 test: /\.(js|jsx|png|jpg)$/,
                 exclude: /(node_modules)/,
-                include: path.resolve(__dirname, 'dev'),
                 loader: 'babel-loader',
             },
             
             {
                 test: /\.css$/,
-                include: path.resolve(__dirname, 'dev'),
                 use: ["style-loader", "css-loader"]
             },
 
             {
                 test: /\.(png|jp(e*)g|svg)$/,  
-                include: path.resolve(__dirname, 'dev'),
                 use: [{
                     loader: 'url-loader',
                     options: { 
@@ -64,7 +60,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
           },
           compress: true,
-          port: 8007,
+          port: 6005,
     }
     
 };

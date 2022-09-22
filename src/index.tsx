@@ -1,6 +1,10 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { MovieContextProvider } from "./store/movie-context";
 
 const container = document.getElementById("root");
 const root = createRoot(container!); 
-root.render(<App />);
+root.render(
+<MovieContextProvider>
+    <App />
+</MovieContextProvider>);
