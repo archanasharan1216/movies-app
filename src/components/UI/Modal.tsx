@@ -1,6 +1,8 @@
+import React from "react";
 import ReactDOM from "react-dom";
+
 import CloseMark from "./CloseMark";
-import { BackdropWrapper, ModalWrapper, ModalControl } from "./Modal.styles";
+import { BackdropWrapper, ModalControl, ModalWrapper } from "./Modal.styles";
 
 interface IBackdropProps {
   onClose?: React.MouseEventHandler<HTMLDivElement>;
@@ -10,14 +12,14 @@ interface IModalProps extends IBackdropProps {
   children: JSX.Element;
 }
 
-const Backdrop: React.FunctionComponent<IBackdropProps> = ({onClose}) => {
+const Backdrop: React.FunctionComponent<IBackdropProps> = ({ onClose }) => {
   return <BackdropWrapper onClick={onClose}></BackdropWrapper>;
 };
 
-const ModalOverlay: React.FC<IModalProps> = ({onClose, children}) => {
+const ModalOverlay: React.FC<IModalProps> = ({ onClose, children }) => {
   return (
     <ModalWrapper>
-      <CloseMark onClose={onClose}/>
+      <CloseMark onClose={onClose} />
       <div>{children}</div>
     </ModalWrapper>
   );
@@ -25,13 +27,10 @@ const ModalOverlay: React.FC<IModalProps> = ({onClose, children}) => {
 
 const portalElement = document.getElementById("overlays") as HTMLElement;
 
-const Modal: React.FunctionComponent<IModalProps> = ({onClose, children}) => {
+const Modal: React.FunctionComponent<IModalProps> = ({ onClose, children }) => {
   return (
     <ModalControl>
-      {ReactDOM.createPortal(
-        <Backdrop onClose={onClose} />,
-        portalElement
-      )}
+      {ReactDOM.createPortal(<Backdrop onClose={onClose} />, portalElement)}
       {ReactDOM.createPortal(
         <ModalOverlay onClose={onClose}>{children}</ModalOverlay>,
         portalElement

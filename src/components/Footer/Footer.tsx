@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const FooterControl = styled.div`
   background: #424242;
-
   margin: 20px;
   margin-top: 0;
   height: 7%;

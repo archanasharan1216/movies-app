@@ -1,40 +1,41 @@
-import Card from "../../Movies/components/MovieCard";
-import { useContext } from 'react';
+import { useContext, useMemo } from "react";
+
 import MovieContext from "../../../store/movie-context";
-import { movies } from "../../Movies/Movies.data";
+import Card from "../../Movies/components/MovieCard";
+import movies from "../../Movies/Movies.data";
 import { HeaderCardWrapper, MovieDetailsWrapper } from "./MovieDetails.styles";
 
 const MovieDetails: React.FunctionComponent = () => {
-     const ctx = useContext(MovieContext)
-     const selectedMovie = movies.filter((movie) => {
-     return movie.title === ctx.movieTitle;
-   });
-   
-   return(
-    
-     <HeaderCardWrapper>
-          <Card 
-          id={selectedMovie[0].id} 
-          title={selectedMovie[0].title} 
-          type={selectedMovie[0].type} 
-          year={selectedMovie[0].year} 
-          image={selectedMovie[0].image} 
-          showMovieDetails={false}
-           />
-          <MovieDetailsWrapper className='movieDetails'>
-               <div>
-                   <span className='movieTitle'> {selectedMovie[0].title}</span>
-                   <span className='movieRating'> {selectedMovie[0].rating}</span>
-               </div>
-               <div className='movieType'>{selectedMovie[0].type}</div>
-               <div className='movieYear'>
-                   <span>{selectedMovie[0].year}</span> 
-                   <span className='movieDuration'>{selectedMovie[0].duration}h</span> 
-               </div>
-               <div className='movieDescription'>{selectedMovie[0].overview}</div>
-          </MovieDetailsWrapper>   
-     </HeaderCardWrapper>
-    );
-}
+  const ctx = useContext(MovieContext);
+  const selectedMovie = useMemo(
+    () => movies.filter((movie) => movie.title === ctx.movieTitle)[0],
+    [ctx.movieTitle]
+  );
+
+  return (
+    <HeaderCardWrapper>
+      <Card
+        id={selectedMovie.id}
+        title={selectedMovie.title}
+        type={selectedMovie.type}
+        year={selectedMovie.year}
+        image={selectedMovie.image}
+        showMovieDetails={false}
+      />
+      <MovieDetailsWrapper className="movieDetails">
+        <div>
+          <span className="movieTitle"> {selectedMovie.title}</span>
+          <span className="movieRating"> {selectedMovie.rating}</span>
+        </div>
+        <div className="movieType">{selectedMovie.type}</div>
+        <div className="movieYear">
+          <span>{selectedMovie.year}</span>
+          <span className="movieDuration">{selectedMovie.duration}h</span>
+        </div>
+        <div className="movieDescription">{selectedMovie.overview}</div>
+      </MovieDetailsWrapper>
+    </HeaderCardWrapper>
+  );
+};
 
 export default MovieDetails;

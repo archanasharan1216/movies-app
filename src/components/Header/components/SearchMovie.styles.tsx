@@ -49,4 +49,3 @@ export const TextInputDiv = styled.div`
     padding-left: 20px;
   }
 `;
-

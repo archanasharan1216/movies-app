@@ -1,4 +1,7 @@
+import React from "react";
+
 import { MoviesSortControl } from "../Movies.styles";
+
 interface IMovieSort {
   handleSort: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   sortOptions: string[];

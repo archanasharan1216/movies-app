@@ -1,22 +1,23 @@
-import { useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import SearchMovie from "./components/SearchMovie";
-import AddMovie from "./components/AddMovie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useCallback, useContext } from "react";
+
 import MovieContext from "../../store/movie-context";
+import AddMovie from "./components/AddMovie";
 import MovieDetails from "./components/MovieDetails";
+import SearchMovie from "./components/SearchMovie";
 import {
-  SearchHeader,
-  MovieHeader,
   BackgroundFilter,
   HeaderTop,
+  MovieHeader,
+  SearchHeader,
 } from "./HeaderForm.styles";
 
 const HeaderForm: React.FunctionComponent = () => {
   const ctx = useContext(MovieContext);
-  const searchIconHandler = () => {
+  const searchIconHandler = useCallback(() => {
     ctx.removeDetails();
-  };
+  }, []);
   return (
     <>
       {!ctx.showMovieDetails && (

@@ -12,7 +12,7 @@ const isDate = (date: string | number | Date): boolean =>
   new Date(date).toString() !== "Invalid Date" &&
   !isNaN(Number(new Date(date)));
 
-const isValidUrl = (movieUrl: string): Boolean => {
+const isValidUrl = (movieUrl: string): boolean => {
   try {
     return Boolean(new URL(movieUrl));
   } catch (e) {
@@ -20,15 +20,15 @@ const isValidUrl = (movieUrl: string): Boolean => {
   }
 };
 
-export const validateForm = (data: IModalData) => {
-  const titleHasError = !(data.title && data.title.length > 0);
+export const validateForm = (data: IModalData): any => {
+  const titleHasError = !(data.title.length > 0);
 
   const movieUrlHasError = !isValidUrl(data.movieUrl);
   const ratingHasError = !(
-    0 <= Number(data.rating || 0) && Number(data.rating || 0) <= 100
+    Number(data.rating) >= 0 && Number(data.rating) <= 100
   );
   const runtimeHasError = !(
-    0 < Number(data.runtime || 0) && Number(data.runtime || 0) <= 360
+    Number(data.runtime) > 0 && Number(data.runtime) <= 360
   );
   const releaseDateHasError = !isDate(data.releaseDate);
   const genreHasError = data.genre.length === 0;

@@ -1,12 +1,13 @@
-import { useState, useCallback, useMemo } from "react";
-import TextInput from "../../UI/TextInput";
+import React, { useCallback, useMemo, useState } from "react";
+
+import movies from "../../Movies/Movies.data";
 import Button from "../../UI/Button";
-import { movies } from "../../Movies/Movies.data";
+import TextInput from "../../UI/TextInput";
 import { SearchControl, TextInputDiv } from "./SearchMovie.styles";
 
 const SearchMovie: React.FunctionComponent = () => {
   const [inputValue, setInput] = useState<string>("");
-  const movieNames: Array<string> = useMemo(
+  const movieNames: string[] = useMemo(
     () => movies.map((movie) => movie.title),
     []
   );
@@ -26,7 +27,6 @@ const SearchMovie: React.FunctionComponent = () => {
       }
       if (movieNames.includes(inputValue)) {
         console.log("Movie Found - ", inputValue);
-        return;
       } else {
         console.log("Not Found - ", inputValue);
       }
@@ -44,6 +44,8 @@ const SearchMovie: React.FunctionComponent = () => {
             label="FIND YOUR MOVIE"
             onChange={onChangeHandler}
             value={inputValue}
+            labelClass={""}
+            inputClass={""}
           />
         </TextInputDiv>
         <Button type="submit" buttonClass="buttonClass" name="SEARCH"></Button>

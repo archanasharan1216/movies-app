@@ -1,3 +1,5 @@
+import React from "react";
+
 import ModalContent from "../../UI/ModalContent";
 
 interface IEditMovie {

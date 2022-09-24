@@ -1,11 +1,11 @@
-import Movie from "../../models/movie";
 import img1 from "../../assets/images/avengers.jpg";
 import img2 from "../../assets/images/bohemian.jpg";
 import img3 from "../../assets/images/inception.jpg";
 import img4 from "../../assets/images/killbill.jpg";
 import img5 from "../../assets/images/reservoirdogs.jpg";
+import Movie from "../../models/movie";
 
-export const movies = [
+export default [
   new Movie(
     "Avengers",
     "Action & Adventure, Comedy",

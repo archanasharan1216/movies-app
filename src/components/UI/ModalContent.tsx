@@ -1,10 +1,11 @@
-import { useState, useCallback } from "react";
-import Modal from "./Modal";
-import TextInput from "./TextInput";
+import { useCallback, useState } from "react";
+
 import Button from "./Button";
-import { Form, GenreControl, InputErrorMessage } from "./ModalContent.styles";
-import { validateForm } from "./ModalContent.helpers";
+import Modal from "./Modal";
 import { genresData } from "./ModalContent.data";
+import { validateForm } from "./ModalContent.helpers";
+import { Form, GenreControl, InputErrorMessage } from "./ModalContent.styles";
+import TextInput from "./TextInput";
 
 interface IModalContent {
   modalTitle: string;
@@ -18,8 +19,8 @@ const inputHandler = (
     | React.ChangeEvent<HTMLSelectElement>
     | React.ChangeEvent<HTMLTextAreaElement>,
   setFunction: React.Dispatch<React.SetStateAction<typeof event.target.value>>
-) => {
-  if (!event.target.value) {
+): void => {
+  if (event.target.value.length === 0) {
     return;
   }
   setFunction(event.target.value);
@@ -49,13 +50,11 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
   };
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+    (e: React.FormEvent): void => {
       e.preventDefault();
       setIsSubmitted(true);
 
-      if (validateForm(data).hasError) {
-        return;
-      } else {
+      if (validateForm(data).hasError === null) {
         console.log("form value", data);
         closeModalHandler();
       }
@@ -64,7 +63,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
   );
 
   const handleFormReset = useCallback(
-    (e: React.FormEvent) => {
+    (e: React.FormEvent): void => {
       e.preventDefault();
       setIsSubmitted(false);
       setTitle("");
@@ -78,28 +77,34 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
     [title, movieUrl, rating, runtime, genre, overview]
   );
 
-  const showCheckboxes = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    var checkboxes = document.getElementById("checkboxes");
-    if (!isGenreExpanded && checkboxes) {
-      checkboxes.style.display = "block";
-      setIsGenreExpanded(true);
-    } else if (checkboxes) {
-      checkboxes.style.display = "none";
-      setIsGenreExpanded(false);
-    }
-  };
+  const showCheckboxes = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+      const checkboxes = document.getElementById("checkboxes");
+      if (!isGenreExpanded && checkboxes != null) {
+        checkboxes.style.display = "block";
+        setIsGenreExpanded(true);
+      } else if (checkboxes != null) {
+        checkboxes.style.display = "none";
+        setIsGenreExpanded(false);
+      }
+    },
+    []
+  );
 
-  const setCheckboxes = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked === true) {
-      setGenre((genre) => [...genre, e.target.id]);
-    } else {
-      setGenre((genre) =>
-        genre.filter((genre) => {
-          return genre !== e.target.id;
-        })
-      );
-    }
-  };
+  const setCheckboxes = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>): void => {
+      if (e.target.checked) {
+        setGenre((genre) => [...genre, e.target.id]);
+      } else {
+        setGenre((genre) =>
+          genre.filter((genre) => {
+            return genre !== e.target.id;
+          })
+        );
+      }
+    },
+    []
+  );
   const modalActions = (
     <Form onSubmit={handleSubmit} onReset={handleFormReset}>
       <div className="modalTitle">{modalTitle}</div>
@@ -112,8 +117,10 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
             onChange={(e) => inputHandler(e, setTitle)}
             placeholder="Title"
             value={title}
+            labelClass={""}
+            inputClass={""}
           />
-          {validateForm(data).titleHasError[0] && isSubmitted && (
+          {validateForm(data).titleHasError[0] !== null && isSubmitted && (
             <InputErrorMessage>
               {validateForm(data).titleHasError[1]}
             </InputErrorMessage>
@@ -128,11 +135,12 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
             value={releaseDate}
             onChange={(e) => inputHandler(e, setReleaseDate)}
           />
-          {validateForm(data).releaseDateHasError[0] && isSubmitted && (
-            <InputErrorMessage>
-              {validateForm(data).releaseDateHasError[1]}
-            </InputErrorMessage>
-          )}
+          {validateForm(data).releaseDateHasError[0] !== null &&
+            isSubmitted && (
+              <InputErrorMessage>
+                {validateForm(data).releaseDateHasError[1]}
+              </InputErrorMessage>
+            )}
         </div>
       </div>
       <div className="rowWrapper">
@@ -144,8 +152,10 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
             onChange={(e) => inputHandler(e, setUrl)}
             placeholder="https://"
             value={movieUrl}
+            labelClass={""}
+            inputClass={""}
           />
-          {validateForm(data).movieUrlHasError[0] && isSubmitted && (
+          {validateForm(data).movieUrlHasError[0] !== null && isSubmitted && (
             <InputErrorMessage>
               {validateForm(data).movieUrlHasError[1]}
             </InputErrorMessage>
@@ -159,8 +169,10 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
             onChange={(e) => inputHandler(e, setRating)}
             placeholder="7.8"
             value={rating}
+            labelClass={""}
+            inputClass={""}
           />
-          {validateForm(data).ratingHasError[0] && isSubmitted && (
+          {validateForm(data).ratingHasError[0] !== null && isSubmitted && (
             <InputErrorMessage>
               {validateForm(data).ratingHasError[1]}
             </InputErrorMessage>
@@ -192,7 +204,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
             </div>
           </div>
         </GenreControl>
-        {validateForm(data).genreHasError[0] && isSubmitted && (
+        {validateForm(data).genreHasError[0] !== null && isSubmitted && (
           <InputErrorMessage>
             {validateForm(data).genreHasError[1]}
           </InputErrorMessage>
@@ -205,8 +217,10 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
             onChange={(e) => inputHandler(e, setRuntime)}
             placeholder="minutes"
             value={runtime}
+            labelClass={""}
+            inputClass={""}
           />
-          {validateForm(data).runtimeHasError[0] && isSubmitted && (
+          {validateForm(data).runtimeHasError[0] !== null && isSubmitted && (
             <InputErrorMessage>
               {validateForm(data).runtimeHasError[1]}
             </InputErrorMessage>
@@ -226,7 +240,7 @@ const ModalContent: React.FunctionComponent<IModalContent> = ({
             placeholder="Movie Description"
             onChange={(e) => inputHandler(e, setOverview)}
           />
-          {validateForm(data).overviewHasError[0] && isSubmitted && (
+          {validateForm(data).overviewHasError[0] !== null && isSubmitted && (
             <InputErrorMessage>
               {validateForm(data).overviewHasError[1]}
             </InputErrorMessage>

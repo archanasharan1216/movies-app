@@ -1,6 +1,7 @@
-import { useCallback, useState } from "react";
-import ModalContent from "../../UI/ModalContent";
+import React, { useCallback, useState } from "react";
+
 import Button from "../../UI/Button";
+import ModalContent from "../../UI/ModalContent";
 import { ButtonDiv } from "./AddMovie.styles";
 
 const AddMovie: React.FunctionComponent = () => {

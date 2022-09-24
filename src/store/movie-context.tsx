@@ -1,43 +1,49 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useCallback, useState } from "react";
 
 const MovieContext = React.createContext({
-    showMovieDetails:false,
-    movieTitle: '',
-    setMovieTitle: (title: string) => {},
-    showDetails: (title: string) => {},
-    removeDetails: () => {}
+  showMovieDetails: false,
+  movieTitle: "",
+  setMovieTitle: (title: string) => {},
+  showDetails: (title: string) => {},
+  removeDetails: () => {},
 });
 
-type PropTypes = {
-    children: ReactNode
+interface IMovieContext {
+  children: ReactNode;
 }
+const modalHandler = (
+  value: boolean,
+  setFunction: React.Dispatch<React.SetStateAction<typeof value>>
+): void => {
+  setFunction(value);
+};
 
-export const MovieContextProvider: React.FunctionComponent<PropTypes> = (props) => {
-    const [showMovieDetails, setMovieDetails] = useState<boolean>(false);
-    const [movieTitle, setMovieTitle] = useState<string>('');
-   
-    const showDetailsHandler = (movieTitle: string) => {
-        setMovieDetails(true);  
-        console.log("in show details"); 
-    }
-    const removeDetailsHandler = () => {
-        setMovieDetails(false);
-    }
+export const MovieContextProvider: React.FunctionComponent<IMovieContext> = ({
+  children,
+}) => {
+  const [showMovieDetails, setMovieDetails] = useState<boolean>(false);
+  const [movieTitle, setMovieTitle] = useState<string>("");
 
-    const movieTitleHandler = (title: string) => {
-        setMovieTitle(title);
-    }
+  const movieTitleHandler = useCallback((title: string) => {
+    setMovieTitle(title);
+  }, []);
 
-    return(
-        <MovieContext.Provider value={{
-            showMovieDetails: showMovieDetails,
-            movieTitle: movieTitle,
-            setMovieTitle: movieTitleHandler,
-            showDetails: showDetailsHandler,
-            removeDetails: removeDetailsHandler
-        }}>
-            {props.children}
-        </MovieContext.Provider>
-    );
-}
+  return (
+    <MovieContext.Provider
+      value={{
+        showMovieDetails,
+        movieTitle,
+        setMovieTitle: movieTitleHandler,
+        showDetails: () => {
+          modalHandler(true, setMovieDetails);
+        },
+        removeDetails: () => {
+          modalHandler(false, setMovieDetails);
+        },
+      }}
+    >
+      {children}
+    </MovieContext.Provider>
+  );
+};
 export default MovieContext;

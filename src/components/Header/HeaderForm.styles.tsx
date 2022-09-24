@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import image from "../../assets/images/bgrnd-img.png";
 
 export const HeaderControl = styled.div`
@@ -40,6 +41,9 @@ button {
      margin: 2%;
      width: 2em;
      margin-bottom: 0;
+     font-size: smaller;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
  }
 `;

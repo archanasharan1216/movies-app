@@ -178,9 +178,9 @@ export const GenreControl = styled.div`
     color: #ffffff;
   }
 
-  input[type='checkbox'] {
+  input[type="checkbox"] {
     accent-color: #f65261;
-}
+  }
 `;
 
 export const InputErrorMessage = styled.span`

@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import CloseMark from "../../../UI/CloseMark";
-import EditMovie from "../EditMovie";
-import DeleteMovie from "../DeleteMovie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+
 import MovieContext from "../../../../store/movie-context";
+import CloseMark from "../../../UI/CloseMark";
+import DeleteMovie from "../DeleteMovie";
+import EditMovie from "../EditMovie";
 import { CardControl } from "./MovieCard.styles";
 
 interface ICard {
@@ -28,23 +29,26 @@ const Card: React.FunctionComponent<ICard> = ({
   const [editMovie, setEditMovie] = useState<boolean>(false);
   const [deleteMovie, setDeleteMovie] = useState<boolean>(false);
 
-  const modalHandler = (
-    modalState: boolean,
-    setFunction: React.Dispatch<React.SetStateAction<typeof modalState>>
-  ) => {
-    setFunction(modalState);
-  };
+  const modalHandler = useCallback(
+    (
+      modalState: boolean,
+      setFunction: React.Dispatch<React.SetStateAction<typeof modalState>>
+    ) => {
+      setFunction(modalState);
+    },
+    []
+  );
 
   useEffect(() => {
     if (editMovie || deleteMovie) {
       setModifyMovie(false);
     }
   }, [editMovie, deleteMovie]);
-  const movieDetailsHandler = () => {
+  const movieDetailsHandler = useCallback(() => {
     ctx.setMovieTitle(title);
     ctx.showDetails(title);
     ctx.movieTitle = title;
-  };
+  }, [ctx.movieTitle]);
 
   return (
     <>

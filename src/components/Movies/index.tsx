@@ -1,18 +1,19 @@
-import { useCallback, useState } from "react";
+import "react-tabs/style/react-tabs.css";
+
+import React, { useCallback, useState } from "react";
 import { Tab, TabList } from "react-tabs";
+
+import Movie from "../../models/movie";
+import MoviesList from "./components/MoviesList";
+import MoviesSort from "./components/MoviesSort";
+import movies, { sortOptions, tabs } from "./Movies.data";
+import { capitalize, sortByDateAsc, sortByTitleAsc } from "./Movies.helpers";
 import {
   MoviesContainer,
   PanelControl,
   TabControl,
   TabsDiv,
 } from "./Movies.styles";
-import Movie from "../../models/movie";
-import MoviesSort from "./components/MoviesSort";
-import MoviesList from "./components/MoviesList";
-import { capitalize, sortByDateAsc, sortByTitleAsc } from "./Movies.helpers";
-import { sortOptions, tabs } from "./Movies.data";
-import { movies } from "./Movies.data";
-import "react-tabs/style/react-tabs.css";
 
 const MoviesDisplay: React.FC = () => {
   const [sortingFunction, setSortingFunction] = useState<

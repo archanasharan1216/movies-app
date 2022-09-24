@@ -1,5 +1,5 @@
+import { TabPanel, Tabs } from "react-tabs";
 import styled from "styled-components";
-import { Tabs, TabPanel } from "react-tabs";
 
 export const MoviesContainer = styled.div`
   background-color: #232323;

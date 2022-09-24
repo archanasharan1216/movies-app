@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 
 interface IButtonProps extends ComponentPropsWithoutRef<"button"> {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -11,7 +11,7 @@ const Button: React.FunctionComponent<IButtonProps> = ({
   buttonClass,
 }) => {
   return (
-    <button type={type || "button"} onClick={onClick} className={buttonClass}>
+    <button type={type ?? "button"} onClick={onClick} className={buttonClass}>
       {name}
     </button>
   );

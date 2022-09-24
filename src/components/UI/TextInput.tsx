@@ -1,24 +1,24 @@
 import { ComponentPropsWithoutRef } from "react";
 
-interface IInputProps extends ComponentPropsWithoutRef<"input"> {
+interface ITextInput extends ComponentPropsWithoutRef<"input"> {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  label?: string;
-  labelClass?: string;
-  inputClass?: string;
+  label: string;
+  labelClass: string;
+  inputClass: string;
 }
-const TextInput: React.FunctionComponent<IInputProps> = ({
-  label,
-  id,
-  labelClass,
-  type,
+const TextInput: React.FunctionComponent<ITextInput> = ({
   onChange,
-  placeholder,
+  label,
+  labelClass,
   inputClass,
+  id,
+  type,
+  placeholder,
   value,
 }) => {
   return (
     <>
-      {label && (
+      {label != null && (
         <label htmlFor={id} className={labelClass}>
           {label}
         </label>
