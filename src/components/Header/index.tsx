@@ -18,6 +18,7 @@ const HeaderForm: React.FunctionComponent = () => {
   const searchIconHandler = useCallback(() => {
     ctx.removeDetails();
   }, []);
+
   return (
     <>
       {!ctx.showMovieDetails && (

@@ -3,9 +3,11 @@ import React, { useCallback, useMemo, useState } from "react";
 import movies from "../../Movies/Movies.data";
 import Button from "../../UI/Button";
 import TextInput from "../../UI/TextInput";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { SearchControl, TextInputDiv } from "./SearchMovie.styles";
 
 const SearchMovie: React.FunctionComponent = () => {
+  useDocumentTitle("Movies App");
   const [inputValue, setInput] = useState<string>("");
   const movieNames: string[] = useMemo(
     () => movies.map((movie) => movie.title),

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import MovieContext from "../../../../store/movie-context";
+import { useDocumentTitle } from "../../../Header/hooks/useDocumentTitle";
 import CloseMark from "../../../UI/CloseMark";
 import DeleteMovie from "../DeleteMovie";
 import EditMovie from "../EditMovie";
@@ -25,6 +26,7 @@ const Card: React.FunctionComponent<ICard> = ({
   showMovieDetails,
 }) => {
   const ctx = useContext(MovieContext);
+  useDocumentTitle(`Movies App - ${title}`);
   const [modifyMovie, setModifyMovie] = useState<boolean>(false);
   const [editMovie, setEditMovie] = useState<boolean>(false);
   const [deleteMovie, setDeleteMovie] = useState<boolean>(false);
