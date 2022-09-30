@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import MovieContext from "../../../../store/movie-context";
-import { useDocumentTitle } from "../../../Header/hooks/useDocumentTitle";
 import CloseMark from "../../../UI/CloseMark";
 import DeleteMovie from "../DeleteMovie";
 import EditMovie from "../EditMovie";
@@ -26,7 +25,6 @@ const Card: React.FunctionComponent<ICard> = ({
   showMovieDetails,
 }) => {
   const ctx = useContext(MovieContext);
-  useDocumentTitle(`Movies App - ${title}`);
   const [modifyMovie, setModifyMovie] = useState<boolean>(false);
   const [editMovie, setEditMovie] = useState<boolean>(false);
   const [deleteMovie, setDeleteMovie] = useState<boolean>(false);
@@ -34,8 +32,12 @@ const Card: React.FunctionComponent<ICard> = ({
   const modalHandler = useCallback(
     (
       modalState: boolean,
-      setFunction: React.Dispatch<React.SetStateAction<typeof modalState>>
+      setFunction: React.Dispatch<React.SetStateAction<typeof modalState>>,
+      event?:
+        | React.MouseEvent<SVGSVGElement, MouseEvent>
+        | React.MouseEvent<HTMLSpanElement, MouseEvent>
     ) => {
+      event?.stopPropagation();
       setFunction(modalState);
     },
     []
@@ -61,27 +63,27 @@ const Card: React.FunctionComponent<ICard> = ({
             <FontAwesomeIcon
               icon={faEllipsisVertical}
               className="kebabMenu"
-              onClick={() => modalHandler(true, setModifyMovie)}
+              onClick={(event) => modalHandler(true, setModifyMovie, event)}
             />
           )}
           {modifyMovie && (
             <div className="modifyModal">
               <span
                 className="closeButton"
-                onClick={() => modalHandler(false, setModifyMovie)}
+                onClick={(event) => modalHandler(false, setModifyMovie, event)}
               >
                 <CloseMark />
               </span>
               <span
                 className="spaceAbove"
-                onClick={() => modalHandler(true, setEditMovie)}
+                onClick={(event) => modalHandler(true, setEditMovie, event)}
               >
                 Edit
               </span>
 
               <span
                 className="spaceAbove"
-                onClick={() => modalHandler(true, setDeleteMovie)}
+                onClick={(event) => modalHandler(true, setDeleteMovie, event)}
               >
                 Delete
               </span>

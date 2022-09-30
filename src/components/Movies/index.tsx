@@ -4,7 +4,6 @@ import React, { useCallback, useState } from "react";
 import { Tab, TabList } from "react-tabs";
 
 import Movie from "../../models/movie";
-import { useDocumentTitle } from "../Header/hooks/useDocumentTitle";
 import MoviesList from "./components/MoviesList";
 import MoviesSort from "./components/MoviesSort";
 import movies, { sortOptions, tabs } from "./Movies.data";
@@ -17,7 +16,6 @@ import {
 } from "./Movies.styles";
 
 const MoviesDisplay: React.FC = () => {
-  useDocumentTitle("Movies App");
   const [sortingFunction, setSortingFunction] = useState<
     undefined | ((a: Movie, b: Movie) => number)
   >();

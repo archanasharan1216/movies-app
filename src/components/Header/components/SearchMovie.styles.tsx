@@ -17,6 +17,7 @@ export const SearchControl = styled.div`
     border-radius: 5px;
     color: white;
     background-color: #f65261;
+    cursor: pointer;
   }
   form {
     width: 70%;

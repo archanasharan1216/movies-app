@@ -3,6 +3,7 @@ import { useContext, useMemo } from "react";
 import MovieContext from "../../../store/movie-context";
 import Card from "../../Movies/components/MovieCard";
 import movies from "../../Movies/Movies.data";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { HeaderCardWrapper, MovieDetailsWrapper } from "./MovieDetails.styles";
 
 const MovieDetails: React.FunctionComponent = () => {
@@ -11,6 +12,7 @@ const MovieDetails: React.FunctionComponent = () => {
     () => movies.filter((movie) => movie.title === ctx.movieTitle)[0],
     [ctx.movieTitle]
   );
+  useDocumentTitle(`Movies App - ${selectedMovie.title}`);
 
   return (
     <HeaderCardWrapper>

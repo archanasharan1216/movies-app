@@ -55,6 +55,7 @@ export const MoviesSortControl = styled.span`
     margin-left: 25px;
     font-weight: bold;
     font-family: system-ui;
+    cursor: pointer;
   }
 
   label {

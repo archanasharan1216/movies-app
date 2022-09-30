@@ -12,5 +12,6 @@ export const ButtonDiv = styled.div`
     width: 100%;
     font-size: large;
     font-family: system-ui;
+    cursor: pointer;
   }
 `;

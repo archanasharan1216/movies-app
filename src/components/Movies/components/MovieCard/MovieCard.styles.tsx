@@ -46,6 +46,7 @@ export const CardControl = styled.div`
     top: 3%;
     left: 90%;
     height: 5%;
+    cursor: pointer;
   }
   .modifyModal {
     position: absolute;
